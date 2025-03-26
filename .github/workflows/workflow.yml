@@ -26,3 +26,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - run: docker push jsvnext/travel-agency-kata:latest
+  deploy:
+    environment: poc
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: curl https://api.render.com/deploy/srv-cvhtr8hopnds73fnr21g\?key\=bsip6ZtNRxE
