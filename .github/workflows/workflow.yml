@@ -2,7 +2,20 @@ name: Python CICD Kata Workflow
 run-name: Run, build and deploy
 on: [push]
 jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Linter
+        run: uv run ruff check .
   tests:
+    needs: code-quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
