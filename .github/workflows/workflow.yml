@@ -14,6 +14,7 @@ jobs:
           python-version-file: "pyproject.toml"
       - run: uv run ruff format .
   build:
+    environment: poc
     needs: code-quality
     runs-on: ubuntu-latest
     steps:
