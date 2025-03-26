@@ -24,7 +24,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - run: mvn install
       - run: docker build -t jsvnext/python-cicd-kata:latest .
       - run: docker push jsvnext/python-cicd-kata:latest
   deploy:
